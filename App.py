@@ -24,7 +24,7 @@ def values(message: telebot.types.Message):
 @bot.message_handler(content_types=['text',])
 def convert (message: telebot.types.Message):
     try:
-        values = message.text.split(' ')
+        values = message.text.lower().split(' ')
         if len(values) !=3:
             raise ConvertionException('Слишком много/мало параметров')
 
@@ -38,6 +38,7 @@ def convert (message: telebot.types.Message):
     else:
         text = f'Цена {amount} {quote} в {base} - {result["result"]}'
         bot.send_message(message.chat.id,text)
+
 
 
 bot.polling(none_stop=True)
